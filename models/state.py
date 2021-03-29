@@ -9,9 +9,8 @@ from sqlalchemy.ext.declarative import declarative_base
 the actual database table they will be mapped to"""
 Base = declarative_base()
 
-
 class State(BaseModel, Base):
     """Class State that inherits from Base"""
-     __tablename__ = 'states'
+    __tablename__ = 'states'
     name = Column(String(128),
                   nullable=False)
