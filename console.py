@@ -212,22 +212,22 @@ class HBNBCommand(cmd.Cmd):
         print("[Usage]: destroy <className> <objectId>\n")
 
     def do_all(self, args):
-        """ Shows all objects, or all objects of a class"""
-        print_list = []
-
-        if args:
-            args = args.split(' ')[0]  # remove possible trailing args
+        """ PRINTS all string representation of all instances based
+        or not on the class name
+        Ex: $ all BaseModel or $ all"""
+        all_models = storage.all()
+        my_list = []
+        if len(args) < 1:
+            for model_id in all_models.keys():
+                my_list.append(all_models[model_id].__str__())
+        else:
             if args not in HBNBCommand.classes:
                 print("** class doesn't exist **")
-                return
-            for k, v in storage._FileStorage__objects.items():
-                if k.split('.')[0] == args:
-                    print_list.append(str(v))
-        else:
-            for k, v in storage._FileStorage__objects.items():
-                print_list.append(str(v))
-
-        print(print_list)
+            else:
+                for key, value in all_models.items():
+                    if key.split(".")[0] == args:
+                        my_list.append(all_models[key].__str__())
+        print(my_list)
 
     def help_all(self):
         """ Help information for the all command """
