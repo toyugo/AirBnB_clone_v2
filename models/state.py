@@ -2,8 +2,10 @@
 """ State Module for HBNB project """
 import models
 from models.base_model import BaseModel, Base
+from models.city import City
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship
 
 """Allows us to create classes that include directives to describe
 the actual database table they will be mapped to"""
@@ -25,7 +27,7 @@ class State(BaseModel, Base):
             """Getter returns the list of City instances
                - with the state_id = State.id"""
             list_cities = []
-            # comment all ?
+            # all: returns a dictionary of models currently in FileStorage"""
             all_cities = models.storage.all(City)
             for city in all_cities.values():
                 if city.state_id == self.id:
