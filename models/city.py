@@ -10,6 +10,7 @@ from sqlalchemy import ForeignKey
 
 Base = declarative_base()
 
+
 class City(BaseModel, Base):
     """ Class City that inherits from BaseModel and Base"""
     if models.storage_type == 'db':

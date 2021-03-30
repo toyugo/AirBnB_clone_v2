@@ -13,6 +13,7 @@ else:
 
 time = "%Y-%m-%dT%H:%M:%S.%f"
 
+
 class BaseModel:
     """A base class for all hbnb models"""
     if models.storage_type == 'db':
@@ -29,8 +30,8 @@ class BaseModel:
     def __init__(self, *args, **kwargs):
         """Instatntiates a new Base model"""
         if kwargs:
-            #manage kwargs to create instance attribute from this dictionary
-            #if its not already the case
+            # manage kwargs to create instance attribute from this dictionary
+            # if its not already the case
             for key, value in kwargs.items():
                 if key != "__class__":
                     setattr(self, key, value)
@@ -62,8 +63,8 @@ class BaseModel:
         """Convert instance into dict format"""
         dictionary = {}
         dictionary.update(self.__dict__)
-        #remove the key _sa_instance_state from the dictionary
-        #returned by this method only if this key exists
+        # remove the key _sa_instance_state from the dictionary
+        # returned by this method only if this key exists
         if '_sa_instance_state' in dictionary:
             del dictionary['_sa_instance_state']
         dictionary.update({'__class__':
