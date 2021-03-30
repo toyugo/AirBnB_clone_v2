@@ -4,12 +4,8 @@
 import models
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, Integer, String
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
-
-
-Base = declarative_base()
 
 
 class City(BaseModel, Base):
@@ -25,6 +21,6 @@ class City(BaseModel, Base):
         name = ""
         state_id = ""
 
-#    def __init__(self, *args, **kwargs):
-#        """Initialise a city"""
-#        super().__init__(self, *args, **kwargs)
+    def __init__(self, *args, **kwargs):
+        """Initialise a city"""
+        super().__init__(self, *args, **kwargs)

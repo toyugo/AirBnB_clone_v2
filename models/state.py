@@ -4,12 +4,7 @@ import models
 from models.base_model import BaseModel, Base
 from models.city import City
 from sqlalchemy import Column, Integer, String
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
-
-"""Allows us to create classes that include directives to describe
-the actual database table they will be mapped to"""
-Base = declarative_base()
 
 
 class State(BaseModel, Base):
@@ -20,6 +15,10 @@ class State(BaseModel, Base):
         cities = relationship("City", backref="state", cascade="all, delete")
     else:
         name = ""
+
+    def __init__(self, *args, **kwargs):
+        """Initializing of the state"""
+        super().__init__(*args, **kwargs)
 
     if models.storage_type != 'db':
         @property
