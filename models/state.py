@@ -16,10 +16,6 @@ class State(BaseModel, Base):
     else:
         name = ""
 
-    def __init__(self, *args, **kwargs):
-        """Initializing of the state"""
-        super().__init__(*args, **kwargs)
-
     if models.storage_type != 'db':
         @property
         def cities(self):
@@ -32,3 +28,7 @@ class State(BaseModel, Base):
                 if city.state_id == self.id:
                     list_cities.append(city)
             return list_cities
+
+    def __init__(self, *args, **kwargs):
+        """Initializing of the state"""
+        super().__init__(*args, **kwargs)

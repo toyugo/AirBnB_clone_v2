@@ -2,6 +2,7 @@
 """ Console Module """
 import cmd
 import sys
+import models
 from models.base_model import BaseModel
 from models.__init__ import storage
 from models.user import User
@@ -134,8 +135,8 @@ class HBNBCommand(cmd.Cmd):
                     param2 = param2.replace("_", " ")
                 setattr(model, param1, param2)
                 i = i + 1
-            storage.new(model)
-            storage.save()
+            models.storage.new(model)
+            models.storage.save()
             print(model.id)
         else:
             print("** class doesn't exist **")
@@ -215,7 +216,7 @@ class HBNBCommand(cmd.Cmd):
         """ PRINTS all string representation of all instances based
         or not on the class name
         Ex: $ all BaseModel or $ all"""
-        all_models = storage.all()
+        all_models = models.storage.all()
         my_list = []
         if len(args) < 1:
             for model_id in all_models.keys():
