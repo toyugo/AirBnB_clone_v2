@@ -5,11 +5,13 @@ from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
 import models
 
+
 class Amenity(BaseModel, Base):
     if models.storage_type == 'db':
-        __tablename__ = "amenities"    
+        __tablename__ = "amenities"
         name = Column(String(128), nullable=False)
-        place_amenities = relationship("Place", secondary="place_amenity",
-                                    viewonly=False)
+        place_amenities = relationship("Place",
+                                       secondary="place_amenity",
+                                       viewonly=False)
     else:
         name = ""
