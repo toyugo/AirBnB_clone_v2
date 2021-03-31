@@ -8,10 +8,23 @@ from models.user import User
 from sqlalchemy import Column, Integer, String, Float
 from sqlalchemy.orm import relationship
 from sqlalchemy import ForeignKey
+from sqlalchemy import Table
 
+place_amenity = Table('place_amenity',
+                       Base.metadata,
+                       Column('place_id',
+                               String(60),
+                               ForeignKey('places.id'),
+                               primary_key=True,
+                               nullable=False),
+                      Column('amenity_id',
+                              String(60),
+                              ForeignKey('amenities.id'),
+                              primary_key=True, nullable=False))
 
 class Place(BaseModel, Base):
     """ A place to stay """
+    amenity_ids = []
     if models.storage_type == 'db':
         __tablename__ = 'places'
         city_id = Column(String(60), ForeignKey('cities.id'), nullable=False)
@@ -26,6 +39,8 @@ class Place(BaseModel, Base):
         longitude = Column(Float, nullable=True)
         reviews = relationship(
                 "Review", backref="place", cascade="all, delete")
+        amenities = relationship(
+                "Amenity", backref="place_amenity", viewonly=False)
     else:
         city_id = ""
         user_id = ""
@@ -37,7 +52,6 @@ class Place(BaseModel, Base):
         price_by_night = 0
         latitude = 0.0
         longitude = 0.0
-        amenity_ids = []
 
     if models.storage_type != 'db':
         @property
@@ -51,6 +65,20 @@ class Place(BaseModel, Base):
                 if review.place_id == self.id:
                     list_reviews.append(review)
             return list_reviews
+        @property
+        def amenities(self):
+            """getter amenities"""
+            list_amenities = []
+            for ameni in models.storage.all(Amenity):
+                if ameni.id in self.amenity_ids:
+                    list_amenities.append(ameni)
+            return list_amenities
+
+        @amenities.setter
+        def amenities(self, obj):
+            """Setter for amenities Object"""
+            if type(obj) == Amenity:
+                self.amenity_ids.append(obj.id)
 
     def __init__(self, *args, **kwargs):
         """Initializing of the Place object"""
