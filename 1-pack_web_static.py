@@ -15,11 +15,12 @@ from the contents of the web_static folder of your AirBnB Clone repo:
 
 from fabric.api import local
 import time
+from datetime import datetime
 
 
 def do_pack():
-    # converts a tuple or struct_time representing a time as returned by
-    # gmtime() or localtime() to a string specified by the format argument
+    # returns a string representing date and time using:
+    # date, time or datetime object
     t = time.strftime("%Y%m%d%H%M%S")
     try:
         local("mkdir -p versions")
