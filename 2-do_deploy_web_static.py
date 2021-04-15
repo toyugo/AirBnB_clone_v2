@@ -14,6 +14,7 @@ Fabric script that creates and distributes an archive to your web servers :
 """
 
 from fabric.api import *
+from fabric.api import env
 import os.path
 from os.path import exists
 env.hosts = ['35.190.132.204', '34.75.103.223']
