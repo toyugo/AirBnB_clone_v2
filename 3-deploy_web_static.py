@@ -5,9 +5,9 @@ import time
 from fabric.api import local, run, put, sudo, env
 from os import path
 import os
-
-
 env.hosts = ['35.231.210.244', '54.209.19.247']
+
+
 def do_pack():
     """ pack my static"""
     timestamp = time.strftime("%Y%m%d%H%M%S")
@@ -19,6 +19,7 @@ def do_pack():
         return path1
     except Exception:
         return None
+
 
 def do_deploy(archive_path):
     """ distributes"""
@@ -39,6 +40,7 @@ def do_deploy(archive_path):
         return True
     except Exception:
         return False
+
 
 def deploy():
     """creates deploy"""
