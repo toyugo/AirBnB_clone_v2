@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """ Deploy """
 from datetime import datetime
 from fabric.api import local, run, put, sudo, env
