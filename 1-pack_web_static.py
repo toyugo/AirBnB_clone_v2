@@ -21,10 +21,10 @@ from datetime import datetime
 def do_pack():
     # returns a string representing date and time using:
     # date, time or datetime object
-    t = time.strftime("%Y%m%d%H%M%S")
     try:
+        t = datetime.now().strftime("%Y%m%d%H%M%S")
         local("mkdir -p versions")
         local("tar -cvzf versions/web_static_{:s}.tgz web_static".format(t))
-        return ("versions/web_static_{:s}.tgz".format(t))
+        return "versions/web_static_{:s}.tgz".format(t)
     except:
         return None
