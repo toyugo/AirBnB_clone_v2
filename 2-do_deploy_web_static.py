@@ -13,11 +13,10 @@ Fabric script that creates and distributes an archive to your web servers :
 - Deploy the script on your servers: xx-web-01 and xx-web-02
 """
 
-from fabric.api import put, run, env
+from fabric.api import *
 import os.path
 env.hosts = ['35.190.132.204', '34.75.103.223']
-env.user = 'ubuntu'
-env.key_filename = '~/.ssh/holberton'
+
 
 def do_deploy(archive_path):
     """Creates and distributes an archive to my web servers"""
