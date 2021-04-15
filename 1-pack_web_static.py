@@ -14,17 +14,17 @@ from the contents of the web_static folder of your AirBnB Clone repo:
 """
 
 from fabric.api import local
-import time
 from datetime import datetime
 
 
 def do_pack():
-    # returns a string representing date and time using:
-    # date, time or datetime object
-    try:
-        t = datetime.now().strftime("%Y%m%d%H%M%S")
-        local("mkdir -p versions")
-        local("tar -cvzf versions/web_static_{:s}.tgz web_static".format(t))
+    """Generates a .tgz archive"""
+    t = datetime.now().strftime("%Y%m%d%H%M%S")
+    local("mkdir -p versions")
+    result = local(
+            "tar -cvzf versions/web_static_{:s}.tgz web_static".format(t))
+
+    if result.succeeded:
         return "versions/web_static_{:s}.tgz".format(t)
-    except:
+    else:
         return None
