@@ -20,8 +20,8 @@ env.hosts = ['35.190.132.204', '34.75.103.223']
 
 def do_deploy(archive_path):
     """Creates and distributes an archive to my web servers"""
-    if not os.path.isfile(archive_path):
-        return False
+#   if not os.path.isfile(archive_path):
+#       return False
 
     try:
         path = '/data/web_static/releases/'
