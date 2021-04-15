@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
-# Bash script that sets up my web servers for the deployment of web_static
+# configure
 
-sudo apt-get -y update
-sudo apt-get -y install nginx
-sudo ufw allow "Nginx HTTP"
-
-# mkdir -p means: create the directory and, if required, all parent directories
-sudo mkdir -p /data/web_static/releases/test /data/web_static/shared
-
-echo "This is a fake HTML file" | sudo tee /data/web_static/releases/test/index.html
-sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
-sudo chown -R ubuntu:ubuntu /data/
-sudo sed -i '/listen 80 default_server/ a \\tlocation \/hbnb_static\/ {\n\t\talias \/data\/web_static\/current\/\;}' /etc/nginx/sites-available/default
-sudo service nginx restart
+apt-get -y update
+apt-get -y install nginx
+mkdir -p /data/
+mkdir -p /data/web_static/
+mkdir -p /data/web_static/releases/
+mkdir -p /data/web_static/shared/
+mkdir -p /data/web_static/releases/test/
+echo "My test" > /data/web_static/releases/test/index.html
+ln -sf /data/web_static/releases/test/ /data/web_static/current
+chown -hR ubuntu:ubuntu /data
+sed -i "s/^\}$/\tlocation \/hbnb_static\/ \{\n\t\talias \/data\/web_static\/current\/\;\n\t\}\n\}/" /etc/nginx/sites-enabled/default
+service nginx restart
