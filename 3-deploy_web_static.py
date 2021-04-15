@@ -39,3 +39,12 @@ def do_deploy(archive_path):
         return True
     except Exception:
         return False
+
+def deploy():
+    """creates and deploy archive"""
+    path = do_pack()
+    if path is None:
+        return False
+    print(path)
+    res = do_deploy(path)
+    return res
