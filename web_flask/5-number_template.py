@@ -28,16 +28,17 @@ def c_route(text):
 
 @app.route('/python/', defaults={'text': 'is cool'}, strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
-def python_route(text):
-    """ /python and optional param """
-    tmp = text.replace('_', ' ')
-    return 'Python {}'.format(tmp)
+def pythonF(text):
+    """ comment """
+    text = text.replace('_', ' ')
+    return ('Python {}'.format(text))
 
 
 @app.route('/number/<int:n>', strict_slashes=False)
-def number_route(n):
-    """ /number route """
-    return '{:d} is a number'.format(n)
+def number(n):
+    """ comment """
+    return '%s is a number' % n
+
 
 
 @app.route('/number_template/<int:n>', strict_slashes=False)
