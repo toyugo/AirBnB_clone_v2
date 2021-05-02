@@ -67,3 +67,7 @@ class FileStorage:
                 if value == obj:
                     keyToDelete = key
             FileStorage.__objects.pop(keyToDelete)
+
+    def close(self):
+        """Call the reload method."""
+        self.reload()

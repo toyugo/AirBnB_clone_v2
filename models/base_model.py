@@ -27,15 +27,20 @@ class BaseModel:
         if kwargs:
             # manage kwargs to create instance attribute from this dictionary
             # if its not already the case
+			self.id = str(uuid.uuid4())
             for key, value in kwargs.items():
                 if key != "__class__":
                     setattr(self, key, value)
 
             if kwargs.get("updated_at"):
                 self.updated_at = datetime.strptime(kwargs["updated_at"], time)
+			else:
+				self.created_at = datetime.now()
 
             if kwargs.get("created_at"):
                 self.created_at = datetime.strptime(kwargs["created_at"], time)
+			else:
+				self.updated_at = datetime.now()
         else:
             from models import storage
             self.id = str(uuid.uuid4())
