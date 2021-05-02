@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+"""
+    setup 3
+"""
 from flask import Flask
 from flask import render_template
 app = Flask(__name__)
@@ -18,13 +22,13 @@ def hbnb():
 @app.route('/c/<text>', strict_slashes=False)
 def c(text):
     """ comment """
+    text = text.replace('_', ' ')
     return 'C {}'.format(text)
 
 
-@app.route('/python', defaults={'text': 'is cool'}, strict_slashes=False)
 @app.route('/python/', defaults={'text': 'is cool'}, strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
-def python(text):
+def pythonF(text):
     """ comment """
     text = text.replace('_', ' ')
     return ('Python {}'.format(text))
@@ -33,7 +37,7 @@ def python(text):
 @app.route('/number/<int:n>', strict_slashes=False)
 def number(n):
     """ comment """
-    return '%s is a number' % n
+    return '{:d} is a number'.format(n)
 
 
 @app.route('/number_template/<int:n>', strict_slashes=False)
