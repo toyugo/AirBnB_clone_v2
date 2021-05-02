@@ -1,11 +1,12 @@
 #!/usr/bin/python3
 """
-    commentaire
+    routes for the project
 """
 from flask import Flask
 from flask import render_template
 from models import storage
 from models.state import State
+import os
 app = Flask(__name__)
 
 
