@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+"""
+    setup 3
+"""
 from flask import Flask
 
 app = Flask(__name__)
