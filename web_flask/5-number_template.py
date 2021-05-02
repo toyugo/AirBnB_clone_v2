@@ -41,9 +41,9 @@ def number_route(n):
 
 
 @app.route('/number_template/<int:n>', strict_slashes=False)
-def number_template_route(n):
-    """ /number_template route """
-    return render_template('5-number.html', n=n)
+def number_template(n):
+    """ comment """
+    return (render_template('5-number.html', n=n))
 
 
 if __name__ == '__main__':
