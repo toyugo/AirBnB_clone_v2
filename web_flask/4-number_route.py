@@ -33,7 +33,7 @@ def pythonF(text):
     return ('Python {}'.format(text))
 
 
-@app.route('/number/<int:n>')
+@app.route('/number/<int:n>', strict_slashes=False)
 def number(n):
     """ comment """
     return '%s is a number' % n
