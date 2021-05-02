@@ -1,21 +1,24 @@
 from flask import Flask
-
 app = Flask(__name__)
+
 
 @app.route('/')
 def index():
     return 'Hello HBNB!'
 
+
 @app.route('/hbnb')
 def hbnb():
     return 'HBNB'
+
 
 @app.route('/c/<text>')
 def c(text):
     return 'C {}'.format(text)
 
-@app.route('/python', defaults= {'text': 'is magic'})
-@app.route('/python/', defaults= {'text': 'is magic'})
+
+@app.route('/python', defaults={'text': 'is magic'})
+@app.route('/python/', defaults={'text': 'is magic'})
 @app.route('/python/<path:text>')
 def python(text):
     text = text.replace('_', ' ')
