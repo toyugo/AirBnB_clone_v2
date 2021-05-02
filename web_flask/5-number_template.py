@@ -1,29 +1,28 @@
 #!/usr/bin/python3
 """
-    setup 5 routes and start the app
+    setup 3
 """
 from flask import Flask
-from flask import render_template
 app = Flask(__name__)
 
 
 @app.route('/', strict_slashes=False)
-def hello_hbnb():
-    """simple route"""
+def index():
+    """ comment """
     return 'Hello HBNB!'
 
 
 @app.route('/hbnb', strict_slashes=False)
 def hbnb():
-    """ /hbnb route """
+    """ comment """
     return 'HBNB'
 
 
 @app.route('/c/<text>', strict_slashes=False)
-def c_route(text):
-    """ /c route """
-    tmp = text.replace('_', ' ')
-    return 'C {}'.format(tmp)
+def c(text):
+    """ comment """
+    text = text.replace('_', ' ')
+    return 'C {}'.format(text)
 
 
 @app.route('/python/', defaults={'text': 'is cool'}, strict_slashes=False)
