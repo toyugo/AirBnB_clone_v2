@@ -9,27 +9,27 @@ from models.state import State
 app = Flask(__name__)
 
 
-@app.route('/cities_by_states', strict_slashes=False)
-def cities_states_route():
-    """ commentaire """
+@app.teardown_appcontext
+def teardown_db(exception):
+    """after each request"""
+    storage.close()
+
+
+@app.route('/states', strict_slashes=False)
+def get_all_states_route():
+    """ get all states and give to the template"""
     states = storage.all(State).values()
     return render_template('9-states.html', states=states)
 
 
 @app.route('/states/<id>', strict_slashes=False)
 def get_states_by_id_route(id):
-    """ commentaire """
+    """ get all states by id and give to the template"""
     states = storage.all(State)
-    for key, value in states.items():
-        if value.id == id:
-            return render_template('9-states.html', state=value)
+    for k, v in states.items():
+        if v.id == id:
+            return render_template('9-states.html', state=v)
     return render_template('9-states.html', state=None)
 
-
-@app.teardown_appcontext
-def teardown_db(exception):
-    """ commentaire """
-    storage.close()
-
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port=5000)
