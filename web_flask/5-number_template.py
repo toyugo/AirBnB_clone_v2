@@ -35,9 +35,10 @@ def pythonF(text):
 
 
 @app.route('/number/<int:n>', strict_slashes=False)
-def number_route(n):
-    """ /number route """
-    return '{:d} is a number'.format(n)
+def number(n):
+    """ comment """
+    return '{} is a number' % n
+
 
 
 @app.route('/number_template/<int:n>', strict_slashes=False)
